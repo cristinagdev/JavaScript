@@ -175,23 +175,35 @@ const read= () => {
 }
 
 const update = ()=> {
-  let tarea= prompt('¿Qué tarea quieres modificar?');
-  todos.map( (task) => {
-    if (tarea===task) {
-      let tarea2= prompt('¿Que quieres añadir')
-      todos.replace(tarea2);}
-      console.log(todos);
-  });
+  let tareaToModifier= prompt('¿Qué tarea quieres modificar?');
+
+  todos.map( (task ,i) => {
+    if (task === tareaToModifier){
+      let tareaToAdd= prompt('¿Que quieres añadir?');
+      todos.splice (task[i], 1, tareaToAdd);
+      // todos.push(tareaToAdd);} 
+      } }
+  )
 }
 
-// const deleteToDo= ()=> {
-//   let tarea= prompt('¿Que tarea quieres eliminar?')
-//   todos.map( (task) => {
-//     if (task===tarea) {
+const deleteToDo= ()=> {
+  let tarea= prompt('¿Que tarea quieres eliminar?')
+  todos.map( (task, i) => { 
+    task[i]=== tarea 
+    todos.splice(task[i],1);})
+    console.log(todos);
+}
 
-//     }
-//   })
-// }
+const search= ()=> {
+  let tarea=prompt('¿Que quieres buscar?');
+  todos.find( (task) => {
+    return tarea===task;
+    console.log(task);
+    // else console.log('No se ha encontrado la tarea');
+  })
+}
+
+
 
 let respuesta;
 
@@ -212,10 +224,7 @@ while(true){
 
     case "c" :
       create();
-    // let tarea= prompt('¿Que tarea quieres añadir?');
-    // todos.push(tarea);
-    // console.log(todos);
-    break;
+      break;
 
     case "r" :
       read();
@@ -225,5 +234,12 @@ while(true){
       update();
       break;
 
+    case "d" :
+      deleteToDo();
+      break;
+
+    case "s" :
+      search();
+      break;
   }
 }

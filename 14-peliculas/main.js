@@ -72,7 +72,66 @@ peliculas.forEach( (pelicula) => {
 // Ejercicio Array de objetos 02.
 // Imprimir en consola los títulos de las películas más largas que dos horas y media.
 
-peliculas.filter( (pelicula)=> {
-  (pelicula.duracion>150)
+const duracion= peliculas.filter( (pelicula)=> {
+  (peliculas.duracion>150)
 }) 
-console.log();
+console.log(duracion);
+
+// Ejercicio Array de objetos 03.
+// Tener un arreglo nuevo que contenga las películas más modernas, de más del 2000.
+
+const modernas= peliculas.filter( (pelicula)=> {
+  return pelicula.year>2000
+})
+console.log(modernas);
+
+// Ejercicio Array de objetos 04.
+// Encuentra la película que tenga como director Bobby Farrelly y guarda esa película en una variable a parte. (Usa el find())
+
+const director= peliculas.find( (pelicula) => {
+  return pelicula.director==='Bobby Farrelly'
+})
+
+console.log(director);
+
+// Ejercicio Array de objetos 05.
+// Encuentra en el array la primera película que tenga a Steven Spielberg como director.
+
+console.log( peliculas.find( (pelicula)=> { return pelicula.director==='Steven Spielberg'} ));
+
+// Ejercicio Array de objetos 06.
+// Consigue un array filtrado con todas las películas que sean de género Aventuras.
+
+// const filtro= peliculas.filter( (pelicula)=> {
+//   pelicula.genero
+// }  )
+// console.log(filtro);
+
+// Ejercicio Array de objetos 07.
+// Crea un nuevo array donde todas las películas tengan 20 minutos más de los que tienen en realidad. Usa el map()
+
+console.log( peliculas.map( (pelicula) => {
+  return pelicula.duracion+20;
+} )  );
+
+// Ejercicio Array de objetos 08.
+// Crea un nuevo array y hac que todas las películas pasen a ser del año 2000.
+
+const nuevoAño= peliculas.map( (pelicula) => {
+  return {...pelicula, year:2000};
+}  )
+console.log(nuevoAño);
+
+// Ejercicio Array de objetos 09.
+// Recorre el array de películas y luego Imprime en consola el título y todos sus géneros.
+// El señor de los anillos: 
+
+// Aventuras 
+
+// Acción 
+
+// **********
+
+console.log( peliculas.map( (pelicula) => {
+  return pelicula.titulo + ': '+ pelicula.genero;
+}    ));

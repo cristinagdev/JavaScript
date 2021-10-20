@@ -37,7 +37,7 @@
 //   console.log(i,libro);} }
 //   )
 
-
+/*
 
 const numeros = [1,5,7,13,14,22,18,45];
 
@@ -108,11 +108,16 @@ const arrNum = [5,14,68,75,98];
 
 // map() 01.
 // Dame un nuevo array con todos los valores divididos por 3.
+// Si ves que hay muchos decimales, haz que solo tengan 2.
 
-const division= arrNum.map((numero) => { return numero.toFixed(2) /3 });
+const division= arrNum.map((numero) => { 
+  const dividir=(numero/3).toFixed(2);
+  Number(dividir)  
+  return dividir
+});
+
 console.log(division);
 
-// Si ves que hay muchos decimales, haz que solo tengan 2.
 
 // map() 02.
 // Un nuevo array con todos los valores sumándole 2 y al cuadrado.
@@ -123,13 +128,102 @@ console.log(suma);
 // map() 03.
 // Un nuevo array con el 20% sumado.
 
-// const porcentaje= arrNum.map((numero)=> { return numero+()  })
+const porcentaje= arrNum.map((numero)=> { return (numero*20/100) + numero })
+console.log(porcentaje);
 
 // map() 04.
 // Un nuevo array en el que en cada posición haya otro array con el índice en la primera posición escrito así "Posición 0" y el número en la otra. ["Posición 0", 5].
 
-const map4= arrNum.map((numero, i)=> {
-  [numero[i]='posicion '+ i+ numero]
-})
+const arrayDeArrays= arrNum.map((numero, i)=> {
+  return ['Posicion ' + i +', ' + numero]
+});
 
-console.log(map4);
+console.log(arrayDeArrays);
+console.log(arrayDeArrays[0]);
+
+*/
+
+// ¡Ejercicio Guinda! -> To-Do
+// Es un programa para gestionar tareas.
+
+// Empezaremos con un array con un par de tareas básicas.
+
+
+// Creamos un menú en el que daremos las siguientes opciones:
+
+// (c) Create to-do -> Añade al array un nuevo to-do que pide por prompt
+// (r) Read to-dos -> Muestra todos los to-dos que hay en consola -> 1. Planchar camisas
+// (u) Update to-do -> Te pregunta qué to-do quieres modificar y luego te pregunta por el nuevo texto del to-do.
+// (d) Delete to-do -> Te pregunta qué to-do quieres borrar y te lo borra.
+// (s) Search to-do -> Que te imprima por consola los to-dos que coincidan con tu búsqueda.
+// (x) Exit -> sale del programa
+
+// Si puede ser hacer todo con Arrow Functions const nombreFunción = () => {}.
+
+const todos = ['Planchar camisas', 'Ir a comprar al súper', 'Planchar pantalones'];
+
+
+const create= ()=> {
+  let tarea= prompt('¿Que tarea quieres añadir?');
+    todos.push(tarea);
+    console.log(`La tarea ${tarea} se ha añadido correctamente`);
+}
+
+const read= () => {
+  todos.forEach ((tarea, i) => {
+  return console.log(i+1 +'. '+ tarea);});
+}
+
+const update = ()=> {
+  let tarea= prompt('¿Qué tarea quieres modificar?');
+  todos.map( (task) => {
+    if (tarea===task) {
+      let tarea2= prompt('¿Que quieres añadir')
+      todos.replace(tarea2);}
+      console.log(todos);
+  });
+}
+
+// const deleteToDo= ()=> {
+//   let tarea= prompt('¿Que tarea quieres eliminar?')
+//   todos.map( (task) => {
+//     if (task===tarea) {
+
+//     }
+//   })
+// }
+
+let respuesta;
+
+while(true){
+  let respuesta= prompt(`Welcome to your to-Do list!
+  "c" create to-do
+  "r" read to-do
+  "u" update to-do
+  "d" delete to-do
+  "s" search to-do
+  "x" exit`);
+
+  if (respuesta==="x") {
+    break;
+  }
+
+  switch (respuesta) {
+
+    case "c" :
+      create();
+    // let tarea= prompt('¿Que tarea quieres añadir?');
+    // todos.push(tarea);
+    // console.log(todos);
+    break;
+
+    case "r" :
+      read();
+      break;
+
+    case "u" :
+      update();
+      break;
+
+  }
+}

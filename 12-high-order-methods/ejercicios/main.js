@@ -175,34 +175,41 @@ const read= () => {
 }
 
 const update = ()=> {
-  let tareaToModifier= prompt('¿Qué tarea quieres modificar?');
-
-  todos.map( (task ,i) => {
-    if (task === tareaToModifier){
-      let tareaToAdd= prompt('¿Que quieres añadir?');
-      todos.splice (task[i], 1, tareaToAdd);
-      // todos.push(tareaToAdd);} 
-      } }
-  )
-}
+  read();
+  const tareaToModify= Number(prompt('Dime el número de la tarea que quieres modificar'));
+  if (tareaToModify<=todos.length) {
+    const tareaToAdd= prompt('¿Que quieres añadir?');
+    todos.splice (tareaToModify-1, 1, tareaToAdd);
+  } }
+  // El -1 en el splice le indica que borre el numero que te dice el usuario menos una posicion, porque empiezan en 0, pero para él empieza en 1.
 
 const deleteToDo= ()=> {
-  let tarea= prompt('¿Que tarea quieres eliminar?')
-  todos.map( (task, i) => { 
-    task[i]=== tarea 
-    todos.splice(task[i],1);})
+  read();
+  let tarea= Number(prompt('¿Dime el numero de la tarea que quieres eliminar?')); 
+    console.clear();
+    todos.splice(tarea -1, 1);
+    console.log(`la tarea ${tarea} se ha eliminado correctamente`);
     console.log(todos);
-}
+  }
+
 
 const search= ()=> {
-  let tarea=prompt('¿Que quieres buscar?');
-  todos.find( (task) => {
-    return tarea===task;
-    console.log(task);
-    // else console.log('No se ha encontrado la tarea');
-  })
-}
 
+  let tarea=prompt('¿Que quieres buscar?');
+
+  if(tarea===null) {
+    return
+  }
+  if (tarea=== '') {
+    console.log('Tienes que escribir una tarea');
+    return;
+  }
+
+  const encontradas= todos.filter( (toDo) => {
+    return toDo.toLowerCase().includes(tarea.toLowerCase());
+  })
+  console.log(encontradas);
+}
 
 
 let respuesta;
@@ -242,4 +249,4 @@ while(true){
       search();
       break;
   }
-}
+} 

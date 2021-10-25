@@ -126,28 +126,36 @@ console.clear();
 
 const searchTask= () => {
 
-  // const taskToSearch= prompt('¿Que tarea quieres buscar?');
+  const taskToSearch= prompt('¿Que tarea quieres buscar?');
 
-  // // Guarda
-  // if(!taskToSearch || !isNaN(taskToSearch)) {
-  //   console.log('Introduce algo correcto');
-  // }
+  // Guarda
+  if(!taskToSearch || !isNaN(taskToSearch)) {
+    console.log('Introduce algo correcto');
+  }
 
-  // // Recorremos el array para ver si incluye algo de lo que dice el usuario
+  // Recorremos el array para ver si incluye algo de lo que dice el usuario
 
-  // const taskFound=  toDos.filter((task)=> {
-  //   return task.toDo.includes(taskToSearch);
-  // }   )
+  const taskFound=  toDos.filter((task)=> {
+    return task.toDo.toLocaleLowerCase().includes(taskToSearch.toLocaleLowerCase());
+  }   )
 
-  // console.log(taskFound);
+  console.log(taskFound);
 
 }
 
 // ORDENAR 
 const orderTask= ()=>{
 
-  const orderedTask= toDos.sort();
-  console.log(orderedTask.toDo);
+  // Hay que poner el punto con el nombre de la propiedad a ordenar
+  toDos.sort((a, b)=> {
+    if (a.toDo > b.toDo) {
+      return 1;
+    } else {
+      return -1;
+    }
+  })
+  console.clear();
+  readTask();
 
 }
 

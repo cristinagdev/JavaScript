@@ -10,16 +10,26 @@
 class Libro {
 
   alquilado= false;
-  // #titulo;
+  #titulo;
   #autor;
   #paginas;
-  // #genero;
+  #genero;
+  id= Math.floor(Math.random() *5000);
 
   constructor(titulo, autor, paginas, genero) {
-    this.titulo= titulo;
+    this.#titulo= titulo;
     this.#autor=autor;
     this.#paginas= paginas;
-    this.genero= genero;
+    this.#genero= genero;
+    
+  }
+
+  get titulo() {
+    return this.#titulo;
+  }
+
+  get genero() {
+    return this.#genero;
   }
 
   prestado(book) {

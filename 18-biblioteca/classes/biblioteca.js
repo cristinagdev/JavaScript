@@ -31,13 +31,9 @@ class Biblioteca {
   // Metodo para mostrar los libros:
   mostrarLibros(){
     this.catalogo.forEach((libro, index)=> {
-      return console.log(index+1, libro.titulo);
+      return console.log(index+1 +'.- '+ libro.titulo);
     })
   }
-
-  // get titulo() {
-  //   return this.catalogo.#titulo;
-  // }
 
   // Mostrar libros disponibles:
   mostrarDisponibles() {
@@ -47,26 +43,70 @@ class Biblioteca {
 
   // Método para imprimir por género:
   mostrarGenero() {
-    this.catalogo.forEach((libro)=> {
-      return console.log(libro.genero);
-    })
+   const librosGenero= this.catalogo.filter((libro)=> {
+      return libro.genero===libro.genero;})
+      console.log(librosGenero);
   }
 
+  // Alquilar un libro por el id:
+  alquiler(numLibro) {
 
-
-  // Alquilar un libro por el número:
-  alquiler() {
-
-    const num=prompt('Dime el número del libro que quieres alquilar');
-  
-    if ( this.catalogo[num-1].alquilado===false) {
-      this.catalogo[num-1].alquilado=true;
-      // prestado(num);
-    } else {
-      console.log('Ese libro no está disponible');
+    if(!numLibro) {
+      console.error('Necesito un id de libro válido.')
     }
-    // biblio.prestado()
-  // }
+    const estaEnElCatalogo = this.catalogo.find((libro) => {
+      return libro.id === numLibro
+    })
+    if(!estaEnElCatalogo) {
+      console.error(`El libro con el id ${numLibro} no está en el catálogo.`)
+      return;
+    }
+    estaEnElCatalogo.prestado();
+    
   }
+
+  // Metodo para comprobar si hay algo repetido
+  comprobarDuplicados() {
+
+    const acc= [];
+
+    this.catalogo.forEach((libroA) => {
+
+      this.catalogo.forEach((libroB) => {
+        if (libroA.id !== libroB.id && libroA.titulo === libroB.titulo) {
+          acc.push(libroA);
+        } })
+    })
+    this.mostrarLibros(acc);
+  }
+
+
+  // Utilizando el nuevo reduce
+
+  indexarLibros() {
+
+    const librosIndexados = this.catalogo.reduce((acc, libro)=>{
+      acc[libro.autor] = libro;
+      return acc;
+    }, {})
+    console.log(librosIndexados)
+    console.log(librosIndexados['Mario Benedetti'])
+
+
+  }
+
+  inventarioPorAutor() {
+
+    const inventario= this.catalogo.reduce(
+      (acc, libro) => {
+      
+      acc[libro.autor] =acc[libro.autor] ? acc[libro.autor]+=1 : 1;
+      return acc; }, {}) 
+  
+  console.log(inventario);
+  }
+
+
+
 }
 export {Biblioteca};
